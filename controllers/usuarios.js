@@ -42,21 +42,6 @@ const CrearUsuario = async (req, res = response) => {
   try {
     await usuario.save();
 
-    const verificationCode = Math.floor(Math.random() * 1000000);
-    const code = new VerificationCode({
-      email: correo,
-      code: verificationCode,
-    });
-    await code.save();
-
-    let mailOptions = {
-      from: "izifile@company.com",
-      to: correo,
-      subject: "Código de Verificación",
-      text: `Tu código de verificación es: ${verificationCode}`,
-    };
-    transporter.sendMail(mailOptions);
-
     const token = ":D";
     res.json({
       usuario,

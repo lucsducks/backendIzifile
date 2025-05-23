@@ -19,10 +19,7 @@ const UsuarioSchema = Schema({
     type: String,
     required: true,
     default: "USER_ROLE",
-    emun: [
-      "USER_ROLE",
-      "DEV_ROLE",
-    ],
+    emun: ["USER_ROLE", "DEV_ROLE"],
   },
   estado: {
     type: Boolean,
@@ -30,7 +27,7 @@ const UsuarioSchema = Schema({
   },
   verificado: {
     type: Boolean,
-    default: false,
+    default: true,
   },
 
   fechaCreacion: {
