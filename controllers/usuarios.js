@@ -4,7 +4,6 @@ const { Usuario, VerificationCode } = require("../models/");
 const { generarJWT } = require("../helpers");
 const transporter = require("../helpers/mailer");
 
-
 const listarPorRol = (rol) => {
   return async (req = request, res = response) => {
     const { limite = 5, desde = 0 } = req.query;
@@ -43,23 +42,25 @@ const CrearUsuario = async (req, res = response) => {
   try {
     await usuario.save();
 
-    // Generar un código de verificación
     const verificationCode = Math.floor(Math.random() * 1000000);
-    const code = new VerificationCode({ email: correo, code: verificationCode });
+    const code = new VerificationCode({
+      email: correo,
+      code: verificationCode,
+    });
     await code.save();
 
     let mailOptions = {
-      from: 'izifile@company.com',
+      from: "izifile@company.com",
       to: correo,
-      subject: 'Código de Verificación',
-      text: `Tu código de verificación es: ${verificationCode}`
+      subject: "Código de Verificación",
+      text: `Tu código de verificación es: ${verificationCode}`,
     };
     transporter.sendMail(mailOptions);
 
-    const token = ':D';
+    const token = ":D";
     res.json({
       usuario,
-      token
+      token,
     });
   } catch (error) {
     res.status(500).json({
@@ -130,19 +131,22 @@ const verificarCorreo = async (req, res = response) => {
   const { correo, codigoVerificacion } = req.body;
 
   try {
-    const code = await VerificationCode.findOne({ email: correo, code: codigoVerificacion });
+    const code = await VerificationCode.findOne({
+      email: correo,
+      code: codigoVerificacion,
+    });
     if (!code) {
-      return res.status(400).send('Código de verificación incorrecto');
+      return res.status(400).send("Código de verificación incorrecto");
     }
     const usuario = await Usuario.findOne({ correo });
     usuario.verificado = true;
     await usuario.save();
-    await code.remove();  // Eliminar el código de verificación usado
+    await code.remove();
     const token = await generarJWT(usuario.id);
     res.json({
       usuario,
-      token
-    });;
+      token,
+    });
   } catch (error) {
     res.status(500).json({
       message: "Error al verificar el correo electrónico",
@@ -153,20 +157,22 @@ const verificarCorreo = async (req, res = response) => {
 const reenviarEmail = async (req, res = response) => {
   const { correo } = req.body;
   try {
-
     const verificationCode = Math.floor(Math.random() * 1000000);
-    const code = new VerificationCode({ email: correo, code: verificationCode });
+    const code = new VerificationCode({
+      email: correo,
+      code: verificationCode,
+    });
     await code.save();
 
     let mailOptions = {
-      from: 'izifile@company.com',
+      from: "izifile@company.com",
       to: correo,
-      subject: 'Código de Verificación',
-      text: `Tu código de verificación es: ${verificationCode}`
+      subject: "Código de Verificación",
+      text: `Tu código de verificación es: ${verificationCode}`,
     };
     transporter.sendMail(mailOptions);
     res.json({
-      msg: 'Se ha enviado un nuevo código de verificación',
+      msg: "Se ha enviado un nuevo código de verificación",
     });
   } catch (error) {
     res.status(500).json({
@@ -183,5 +189,5 @@ module.exports = {
   DesactivarUsuario,
   actualizarPrivilegio,
   verificarCorreo,
-  reenviarEmail
+  reenviarEmail,
 };

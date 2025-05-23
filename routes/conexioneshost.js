@@ -1,16 +1,9 @@
 const { Router } = require("express");
 const { check } = require("express-validator");
 
-const {
-  validarCampos,
-  validarJWT,
-  tieneRole,
-} = require("../middlewares");
+const { validarCampos, validarJWT, tieneRole } = require("../middlewares");
 
-const {
-  direccionIPExiste,
-  existeConexionPorId,
-} = require("../helpers/");
+const { direccionIPExiste, existeConexionPorId } = require("../helpers/");
 
 const {
   listarPorUsuario,
@@ -22,19 +15,27 @@ const {
 
 const router = Router();
 
-// Listar conexiones por usuario
 router.get(
   "/listar/:owner",
-  [validarJWT, check("owner", "No es un ID válido").isMongoId(), tieneRole("USER_ROLE", "DEV_ROLE"), validarCampos,],
+  [
+    validarJWT,
+    check("owner", "No es un ID válido").isMongoId(),
+    tieneRole("USER_ROLE", "DEV_ROLE"),
+    validarCampos,
+  ],
   listarPorUsuario
 );
 router.get(
   "/hostpersonal/:id",
-  [validarJWT, check("id", "No es un ID válido").isMongoId(), tieneRole("USER_ROLE", "DEV_ROLE"), validarCampos,],
+  [
+    validarJWT,
+    check("id", "No es un ID válido").isMongoId(),
+    tieneRole("USER_ROLE", "DEV_ROLE"),
+    validarCampos,
+  ],
   buscarPorId
 );
 
-// Crear una nueva conexión
 router.post(
   "/",
   [
@@ -49,7 +50,6 @@ router.post(
   crearConexion
 );
 
-// Actualizar una conexión
 router.put(
   "/:id",
   [
@@ -61,7 +61,6 @@ router.put(
   actualizarConexion
 );
 
-// Desactivar una conexión
 router.delete(
   "/:id",
   [

@@ -11,22 +11,24 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcryptjs": "^2.4.3",
-    "cloudinary": "^1.41.0",
+    "bcryptjs": "^3.0.2",
+    "cloudinary": "^2.6.1",
     "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.17.1",
-    "express-fileupload": "^1.4.1",
-    "express-validator": "^6.9.2",
-    "google-auth-library": "^6.1.6",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "express-fileupload": "^1.5.1",
+    "express-validator": "^7.2.1",
+    "google-auth-library": "^9.15.1",
     "jsonwebtoken": "^9.0.2",
-    "moment-timezone": "^0.5.43",
-    "mongoose": "^5.11.15",
-    "nodemailer": "^6.9.7",
-    "ssh2": "^1.14.0",
-    "uuid": "^9.0.1"
+    "moment-timezone": "^0.5.48",
+    "mongoose": "^8.15.0",
+    "moongose": "^1.0.0",
+    "nodemailer": "^7.0.3",
+    "ssh2": "^1.16.0",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+    "nodemon": "^3.1.10"
+  },
+  "packageManager": "pnpm@10.10.0+sha512.d615db246fe70f25dcfea6d8d73dee782ce23e2245e3c4f6f888249fb568149318637dca73c2c5c8ef2a4ca0d5657fb9567188bfab47f566d1ee6ce987815c39"
 }

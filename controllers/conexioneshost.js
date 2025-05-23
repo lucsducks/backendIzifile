@@ -3,7 +3,6 @@ const { ConexionHost } = require("../models/");
 const bcryptjs = require("bcryptjs");
 
 const listarPorUsuario = async (req = request, res = response) => {
-
   const { limite = 5, desde = 0 } = req.query;
   const owner = req.params.owner;
   const query = { owner };
@@ -11,7 +10,7 @@ const listarPorUsuario = async (req = request, res = response) => {
   try {
     const [total, conexiones] = await Promise.all([
       ConexionHost.countDocuments(query),
-      ConexionHost.find(query)
+      ConexionHost.find(query),
     ]);
 
     res.json({
@@ -24,7 +23,6 @@ const listarPorUsuario = async (req = request, res = response) => {
       error: error.message,
     });
   }
-
 };
 const buscarPorId = async (req, res = response) => {
   const { id } = req.params;
@@ -39,13 +37,10 @@ const buscarPorId = async (req, res = response) => {
       error: error.message,
     });
   }
-}
-
-
-
+};
 
 const crearConexion = async (req, res = response) => {
-  const { nombre, owner, usuario, direccionip,port,img, password } = req.body;
+  const { nombre, owner, usuario, direccionip, port, img, password } = req.body;
   const conexion = new ConexionHost({
     nombre,
     owner,
@@ -59,7 +54,7 @@ const crearConexion = async (req, res = response) => {
   try {
     await conexion.save();
     res.json({
-      conexion
+      conexion,
     });
   } catch (error) {
     res.status(500).json({
@@ -74,11 +69,13 @@ const actualizarConexion = async (req, res = response) => {
   const { _id, password, ...resto } = req.body;
 
   if (password) {
-    resto.password = password; // Considera encriptar la contraseña como lo hiciste para usuarios
+    resto.password = password;
   }
 
   try {
-    const conexion = await ConexionHost.findByIdAndUpdate(id, resto, { new: true });
+    const conexion = await ConexionHost.findByIdAndUpdate(id, resto, {
+      new: true,
+    });
     res.json(conexion);
   } catch (error) {
     res.status(500).json({
@@ -116,5 +113,4 @@ module.exports = {
   crearConexion,
   actualizarConexion,
   desactivarConexion,
-
 };

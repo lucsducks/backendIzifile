@@ -1,11 +1,89 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h1>Hola a todos</h1>
-</body>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IziFile - Demo</title>
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero">
+        <h1 class="logo">IziFile</h1>
+        <p class="subtitle">Aplicativo de Escritorio y Móvil</p>
+        <span class="demo-badge">🚀 Versión Demo</span>
+      </div>
+
+      <div class="description">
+        <h2>Aplicativo de Escritorio y Móvil</h2>
+        <p>
+          <strong>Facilita tu conexión a tus servidores</strong> con la máxima
+          seguridad y simplicidad. IziFile es una solución completa para la
+          transferencia de archivos segura mediante protocolos SFTP y SSH.
+        </p>
+
+        <div class="features">
+          <div class="feature">
+            <span class="feature-icon">🔒</span>
+            <h3>Seguridad Avanzada</h3>
+            <p>Protocolos SFTP y SSH para máxima protección de tus datos</p>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">⚡</span>
+            <h3>NodeJS Backend</h3>
+            <p>Lógica de servidor robusta y eficiente con Node.js</p>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">📱</span>
+            <h3>Flutter Multiplataforma</h3>
+            <p>Interfaz móvil fluida para iOS y Android</p>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">🗄️</span>
+            <h3>MongoDB Storage</h3>
+            <p>Almacenamiento seguro de registros de transferencia</p>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">🎯</span>
+            <h3>Para Todos</h3>
+            <p>Experiencia intuitiva para usuarios técnicos y no técnicos</p>
+          </div>
+          <div class="feature">
+            <span class="feature-icon">🔧</span>
+            <h3>Dart Integration</h3>
+            <p>Funciones de interfaz optimizadas con Dart</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="download-section">
+        <h2 class="download-title">Descargar IziFile</h2>
+        <div class="download-buttons">
+          <a href="#" class="download-btn desktop">
+            <span class="btn-icon">💻</span>
+            <div>
+              <div>Descargar para</div>
+              <div><strong>Escritorio</strong></div>
+            </div>
+          </a>
+          <a href="#" class="download-btn android">
+            <span class="btn-icon">📱</span>
+            <div>
+              <div>Descargar</div>
+              <div><strong>App Android</strong></div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const features = document.querySelectorAll(".feature");
+      features.forEach((feature, i) => {
+        feature.style.animationDelay = `${i * 0.1}s`;
+        feature.style.animation = "fadeInUp 0.6s ease-out forwards";
+      });
+    </script>
+  </body>
 </html>
